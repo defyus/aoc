@@ -29,7 +29,6 @@ fn main() -> Result<(), ParseIntError> {
         for item in list_b.iter() {
             if a == *item {
                 similar += 1;
-                println!("{:?} - {:?}", a, item);
             }
         }
 
