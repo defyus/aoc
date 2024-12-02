@@ -9,13 +9,9 @@ fn main() -> Result<(), ParseIntError> {
 
     for line in input.lines() {
         let seg = line.split_whitespace().collect::<Vec<&str>>();
-
         if seg.len() == 2 {
-            let a: i32 = seg[0].parse()?;
-            list_a.push(a);
-
-            let b: i32 = seg[1].parse()?;
-            list_b.push(b);
+            list_a.push(seg[0].parse()?);
+            list_b.push(seg[1].parse()?);
         }
     }
 
@@ -25,13 +21,14 @@ fn main() -> Result<(), ParseIntError> {
     let mut distance = 0;
 
     for i in 0..list_a.len() {
-        let a = list_a[i];
-        let b = list_b[i];
-
+        let a: i32 = list_a[i];
+        let b: i32 = list_b[i];
         distance += a.abs_diff(b)
     }
 
-    println!("{:?}", distance);
+    assert!(2904518 == distance);
+
+    println!("Distance: {}", distance);
 
     Ok(())
 }
