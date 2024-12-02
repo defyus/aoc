@@ -1,7 +1,6 @@
-use anyhow::Error;
 use std::fs;
 
-fn main() -> Result<(), Error> {
+fn main() {
     let input = fs::read_to_string("./src/input.txt").expect("read_error");
 
     let mut part_one_safe_reports = 0;
@@ -37,8 +36,6 @@ fn main() -> Result<(), Error> {
         "[Part 2] Safe Report: {:?} out of {:?}",
         part_two_safe_reports, total_reports
     );
-
-    Ok(())
 }
 
 fn iter(segments: &Vec<i32>) -> bool {
