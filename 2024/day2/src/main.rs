@@ -1,8 +1,5 @@
 use anyhow::Error;
-use std::{
-    fs::{self, create_dir},
-    i32,
-};
+use std::fs;
 
 fn main() -> Result<(), Error> {
     let input = fs::read_to_string("./src/input.txt").expect("read_error");
