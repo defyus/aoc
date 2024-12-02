@@ -33,9 +33,10 @@ fn main() -> Result<(), Error> {
         "[Part 1] Safe Report: {:?} out of {:?}",
         part_one_safe_reports, total_reports
     );
-
-    assert!(311 == part_two_safe_reports);
-
+    //
+    //assert!(242 == part_one_safe_reports);
+    //between 294 and 332
+    //307, 406, 453, 275, 460, 266
     println!(
         "[Part 2] Safe Report: {:?} out of {:?}",
         part_two_safe_reports, total_reports
@@ -60,6 +61,7 @@ fn iter(segments: &Vec<i32>, check: bool) -> bool {
         }
         passed_levels += 1;
     }
+
     return passed_levels == segments.len();
 }
 
