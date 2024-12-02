@@ -19,7 +19,7 @@ fn main() -> Result<(), Error> {
             continue;
         }
 
-        if iter(&segments, true) {
+        if iter(&segments) {
             part_two_safe_reports += 1
         }
     }
@@ -41,33 +41,30 @@ fn main() -> Result<(), Error> {
     Ok(())
 }
 
-fn iter(segments: &Vec<i32>, check: bool) -> bool {
-    let mut passed_levels = 0;
+fn iter(segments: &Vec<i32>) -> bool {
     for idx in 0..segments.len() {
-        if !valid_predicate(segments) {
-            if check {
-                let mut temp = segments.clone();
-                temp.remove(idx);
-
-                if valid_predicate(&temp) {
-                    return true;
-                }
-            };
-            continue;
+        let mut temp = segments.clone();
+        temp.remove(idx);
+        if valid_predicate(&temp) {
+            return true;
         }
-        passed_levels += 1;
     }
-    return passed_levels == segments.len();
+    false
 }
 
 fn valid_predicate(segments: &Vec<i32>) -> bool {
     let predicate_dsc = |a: &i32, b: &i32| a > b && a.abs_diff(*b) <= 3 && a.abs_diff(*b) != 0;
     let predicate_asc = |a: &i32, b: &i32| a < b && a.abs_diff(*b) <= 3 && a.abs_diff(*b) != 0;
 
-    let valid_dsc = segments.is_sorted_by(predicate_dsc);
-    let valid_asc = segments.is_sorted_by(predicate_asc);
+    if segments.is_sorted_by(predicate_dsc) {
+        return true;
+    }
 
-    valid_dsc || valid_asc
+    if segments.is_sorted_by(predicate_asc) {
+        return true;
+    }
+
+    false
 }
 
 fn parse_report(val: &str) -> i32 {
