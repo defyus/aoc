@@ -8,12 +8,13 @@ fn main() -> Result<(), ParseIntError> {
     let mut list_b = Vec::new();
 
     for line in input.lines() {
-        let seg: Vec<&str> = line.split_whitespace().collect::<Vec<&str>>();
+        let seg = line.split_whitespace().collect::<Vec<&str>>();
+
         if seg.len() == 2 {
-            let a: u32 = seg[0].parse()?;
+            let a: i32 = seg[0].parse()?;
             list_a.push(a);
 
-            let b: u32 = seg[1].parse()?;
+            let b: i32 = seg[1].parse()?;
             list_b.push(b);
         }
     }
@@ -27,13 +28,7 @@ fn main() -> Result<(), ParseIntError> {
         let a = list_a[i];
         let b = list_b[i];
 
-        if a > b {
-            distance += a - b;
-        }
-
-        if a < b {
-            distance += b - a;
-        }
+        distance += a.abs_diff(b)
     }
 
     println!("{:?}", distance);
