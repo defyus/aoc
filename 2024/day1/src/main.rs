@@ -1,8 +1,7 @@
 use std::{fs, num::ParseIntError, ops::Mul};
 
 fn main() -> Result<(), ParseIntError> {
-    let input =
-        fs::read_to_string("/home/me/personal/aoc/2024/day1/src/input.txt").expect("read_error");
+    let input = fs::read_to_string("./src/input.txt").expect("read_error");
 
     let mut list_a = Vec::new();
     let mut list_b = Vec::new();
