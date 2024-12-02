@@ -1,10 +1,8 @@
-use std::{fs, io::Error, ops::Index};
-fn main() {
-    let _ = run().unwrap();
-}
+use std::{fs, num::ParseIntError};
 
-fn run() -> Result<(), Error> {
-    let input = fs::read_to_string("/home/me/personal/aoc/2024/day1/src/input.txt")?;
+fn main() -> Result<(), ParseIntError> {
+    let input =
+        fs::read_to_string("/home/me/personal/aoc/2024/day1/src/input.txt").expect("read_error");
 
     let mut list_a = Vec::new();
     let mut list_b = Vec::new();
@@ -12,10 +10,10 @@ fn run() -> Result<(), Error> {
     for line in input.lines() {
         let seg: Vec<&str> = line.split_whitespace().collect::<Vec<&str>>();
         if seg.len() == 2 {
-            let a: u32 = seg.get(0).unwrap().parse().unwrap();
+            let a: u32 = seg[0].parse()?;
             list_a.push(a);
 
-            let b: u32 = seg.get(1).unwrap().parse().unwrap();
+            let b: u32 = seg[1].parse()?;
             list_b.push(b);
         }
     }
@@ -26,12 +24,14 @@ fn run() -> Result<(), Error> {
     let mut distance = 0;
 
     for i in 0..list_a.len() {
-        let a = list_a.index(i.clone());
-        let b = list_b.index(i);
+        let a = list_a[i];
+        let b = list_b[i];
 
         if a > b {
             distance += a - b;
-        } else {
+        }
+
+        if a < b {
             distance += b - a;
         }
     }
