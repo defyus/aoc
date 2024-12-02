@@ -1,5 +1,3 @@
-target
-Cargo.lock
+**/target
+**/Cargo.lock
 
-git config user.name "Defyus"
-git config user.email "defyus.all.now@gmail.com"
